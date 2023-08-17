@@ -184,8 +184,8 @@ type ANTLRv4ParserListener interface {
 	// EnterCharacterRange is called when entering the characterRange production.
 	EnterCharacterRange(c *CharacterRangeContext)
 
-	// EnterTerminal is called when entering the terminal production.
-	EnterTerminal(c *TerminalContext)
+	// EnterTerminalNode is called when entering the terminalNode production.
+	EnterTerminalNode(c *TerminalNodeContext)
 
 	// EnterElementOptions is called when entering the elementOptions production.
 	EnterElementOptions(c *ElementOptionsContext)
@@ -373,8 +373,8 @@ type ANTLRv4ParserListener interface {
 	// ExitCharacterRange is called when exiting the characterRange production.
 	ExitCharacterRange(c *CharacterRangeContext)
 
-	// ExitTerminal is called when exiting the terminal production.
-	ExitTerminal(c *TerminalContext)
+	// ExitTerminalNode is called when exiting the terminalNode production.
+	ExitTerminalNode(c *TerminalNodeContext)
 
 	// ExitElementOptions is called when exiting the elementOptions production.
 	ExitElementOptions(c *ElementOptionsContext)

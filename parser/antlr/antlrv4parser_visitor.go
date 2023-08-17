@@ -184,8 +184,8 @@ type ANTLRv4ParserVisitor interface {
 	// Visit a parse tree produced by ANTLRv4Parser#characterRange.
 	VisitCharacterRange(ctx *CharacterRangeContext) interface{}
 
-	// Visit a parse tree produced by ANTLRv4Parser#terminal.
-	VisitTerminal(ctx *TerminalContext) interface{}
+	// Visit a parse tree produced by ANTLRv4Parser#terminalNode.
+	VisitTerminalNode(ctx *TerminalNodeContext) interface{}
 
 	// Visit a parse tree produced by ANTLRv4Parser#elementOptions.
 	VisitElementOptions(ctx *ElementOptionsContext) interface{}

@@ -374,11 +374,11 @@ func (s *BaseANTLRv4ParserListener) EnterCharacterRange(ctx *CharacterRangeConte
 // ExitCharacterRange is called when production characterRange is exited.
 func (s *BaseANTLRv4ParserListener) ExitCharacterRange(ctx *CharacterRangeContext) {}
 
-// EnterTerminal is called when production terminal is entered.
-func (s *BaseANTLRv4ParserListener) EnterTerminal(ctx *TerminalContext) {}
+// EnterTerminalNode is called when production terminalNode is entered.
+func (s *BaseANTLRv4ParserListener) EnterTerminalNode(ctx *TerminalNodeContext) {}
 
-// ExitTerminal is called when production terminal is exited.
-func (s *BaseANTLRv4ParserListener) ExitTerminal(ctx *TerminalContext) {}
+// ExitTerminalNode is called when production terminalNode is exited.
+func (s *BaseANTLRv4ParserListener) ExitTerminalNode(ctx *TerminalNodeContext) {}
 
 // EnterElementOptions is called when production elementOptions is entered.
 func (s *BaseANTLRv4ParserListener) EnterElementOptions(ctx *ElementOptionsContext) {}

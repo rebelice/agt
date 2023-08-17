@@ -306,14 +306,14 @@ ebnfSuffix
 
 lexerAtom
    : characterRange
-   | terminal
+   | terminalNode
    | notSet
    | LEXER_CHAR_SET
    | DOT elementOptions?
    ;
 
 atom
-   : terminal
+   : terminalNode
    | ruleref
    | notSet
    | DOT elementOptions?
@@ -355,7 +355,7 @@ characterRange
    : STRING_LITERAL RANGE STRING_LITERAL
    ;
 
-terminal
+terminalNode
    : TOKEN_REF elementOptions?
    | STRING_LITERAL elementOptions?
    ;

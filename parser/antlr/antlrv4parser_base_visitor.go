@@ -243,7 +243,7 @@ func (v *BaseANTLRv4ParserVisitor) VisitCharacterRange(ctx *CharacterRangeContex
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseANTLRv4ParserVisitor) VisitTerminal(ctx *TerminalContext) interface{} {
+func (v *BaseANTLRv4ParserVisitor) VisitTerminalNode(ctx *TerminalNodeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

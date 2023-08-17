@@ -186,7 +186,7 @@ setElement
 block
 ruleref
 characterRange
-terminal
+terminalNode
 elementOptions
 elementOption
 identifier

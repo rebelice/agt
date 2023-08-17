@@ -61,7 +61,7 @@ func antlrv4parserParserInit() {
 		"lexerBlock", "lexerCommands", "lexerCommand", "lexerCommandName", "lexerCommandExpr",
 		"altList", "alternative", "element", "labeledElement", "ebnf", "blockSuffix",
 		"ebnfSuffix", "lexerAtom", "atom", "notSet", "blockSet", "setElement",
-		"block", "ruleref", "characterRange", "terminal", "elementOptions",
+		"block", "ruleref", "characterRange", "terminalNode", "elementOptions",
 		"elementOption", "identifier",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
@@ -507,7 +507,7 @@ const (
 	ANTLRv4ParserRULE_block            = 56
 	ANTLRv4ParserRULE_ruleref          = 57
 	ANTLRv4ParserRULE_characterRange   = 58
-	ANTLRv4ParserRULE_terminal         = 59
+	ANTLRv4ParserRULE_terminalNode     = 59
 	ANTLRv4ParserRULE_elementOptions   = 60
 	ANTLRv4ParserRULE_elementOption    = 61
 	ANTLRv4ParserRULE_identifier       = 62
@@ -9555,7 +9555,7 @@ type ILexerAtomContext interface {
 
 	// Getter signatures
 	CharacterRange() ICharacterRangeContext
-	Terminal() ITerminalContext
+	TerminalNode() ITerminalNodeContext
 	NotSet() INotSetContext
 	LEXER_CHAR_SET() antlr.TerminalNode
 	DOT() antlr.TerminalNode
@@ -9613,10 +9613,10 @@ func (s *LexerAtomContext) CharacterRange() ICharacterRangeContext {
 	return t.(ICharacterRangeContext)
 }
 
-func (s *LexerAtomContext) Terminal() ITerminalContext {
+func (s *LexerAtomContext) TerminalNode() ITerminalNodeContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITerminalContext); ok {
+		if _, ok := ctx.(ITerminalNodeContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -9626,7 +9626,7 @@ func (s *LexerAtomContext) Terminal() ITerminalContext {
 		return nil
 	}
 
-	return t.(ITerminalContext)
+	return t.(ITerminalNodeContext)
 }
 
 func (s *LexerAtomContext) NotSet() INotSetContext {
@@ -9722,7 +9722,7 @@ func (p *ANTLRv4Parser) LexerAtom() (localctx ILexerAtomContext) {
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(510)
-			p.Terminal()
+			p.TerminalNode()
 		}
 
 	case 3:
@@ -9793,7 +9793,7 @@ type IAtomContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Terminal() ITerminalContext
+	TerminalNode() ITerminalNodeContext
 	Ruleref() IRulerefContext
 	NotSet() INotSetContext
 	DOT() antlr.TerminalNode
@@ -9835,10 +9835,10 @@ func NewAtomContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 
 func (s *AtomContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *AtomContext) Terminal() ITerminalContext {
+func (s *AtomContext) TerminalNode() ITerminalNodeContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITerminalContext); ok {
+		if _, ok := ctx.(ITerminalNodeContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -9848,7 +9848,7 @@ func (s *AtomContext) Terminal() ITerminalContext {
 		return nil
 	}
 
-	return t.(ITerminalContext)
+	return t.(ITerminalNodeContext)
 }
 
 func (s *AtomContext) Ruleref() IRulerefContext {
@@ -9949,7 +9949,7 @@ func (p *ANTLRv4Parser) Atom() (localctx IAtomContext) {
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(519)
-			p.Terminal()
+			p.TerminalNode()
 		}
 
 	case ANTLRv4ParserRULE_REF:
@@ -11168,8 +11168,8 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// ITerminalContext is an interface to support dynamic dispatch.
-type ITerminalContext interface {
+// ITerminalNodeContext is an interface to support dynamic dispatch.
+type ITerminalNodeContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
@@ -11180,47 +11180,47 @@ type ITerminalContext interface {
 	ElementOptions() IElementOptionsContext
 	STRING_LITERAL() antlr.TerminalNode
 
-	// IsTerminalContext differentiates from other interfaces.
-	IsTerminalContext()
+	// IsTerminalNodeContext differentiates from other interfaces.
+	IsTerminalNodeContext()
 }
 
-type TerminalContext struct {
+type TerminalNodeContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyTerminalContext() *TerminalContext {
-	var p = new(TerminalContext)
+func NewEmptyTerminalNodeContext() *TerminalNodeContext {
+	var p = new(TerminalNodeContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = ANTLRv4ParserRULE_terminal
+	p.RuleIndex = ANTLRv4ParserRULE_terminalNode
 	return p
 }
 
-func InitEmptyTerminalContext(p *TerminalContext) {
+func InitEmptyTerminalNodeContext(p *TerminalNodeContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = ANTLRv4ParserRULE_terminal
+	p.RuleIndex = ANTLRv4ParserRULE_terminalNode
 }
 
-func (*TerminalContext) IsTerminalContext() {}
+func (*TerminalNodeContext) IsTerminalNodeContext() {}
 
-func NewTerminalContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TerminalContext {
-	var p = new(TerminalContext)
+func NewTerminalNodeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TerminalNodeContext {
+	var p = new(TerminalNodeContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = ANTLRv4ParserRULE_terminal
+	p.RuleIndex = ANTLRv4ParserRULE_terminalNode
 
 	return p
 }
 
-func (s *TerminalContext) GetParser() antlr.Parser { return s.parser }
+func (s *TerminalNodeContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *TerminalContext) TOKEN_REF() antlr.TerminalNode {
+func (s *TerminalNodeContext) TOKEN_REF() antlr.TerminalNode {
 	return s.GetToken(ANTLRv4ParserTOKEN_REF, 0)
 }
 
-func (s *TerminalContext) ElementOptions() IElementOptionsContext {
+func (s *TerminalNodeContext) ElementOptions() IElementOptionsContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IElementOptionsContext); ok {
@@ -11236,43 +11236,43 @@ func (s *TerminalContext) ElementOptions() IElementOptionsContext {
 	return t.(IElementOptionsContext)
 }
 
-func (s *TerminalContext) STRING_LITERAL() antlr.TerminalNode {
+func (s *TerminalNodeContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(ANTLRv4ParserSTRING_LITERAL, 0)
 }
 
-func (s *TerminalContext) GetRuleContext() antlr.RuleContext {
+func (s *TerminalNodeContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *TerminalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *TerminalNodeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TerminalContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *TerminalNodeContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(ANTLRv4ParserListener); ok {
-		listenerT.EnterTerminal(s)
+		listenerT.EnterTerminalNode(s)
 	}
 }
 
-func (s *TerminalContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *TerminalNodeContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(ANTLRv4ParserListener); ok {
-		listenerT.ExitTerminal(s)
+		listenerT.ExitTerminalNode(s)
 	}
 }
 
-func (s *TerminalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TerminalNodeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case ANTLRv4ParserVisitor:
-		return t.VisitTerminal(s)
+		return t.VisitTerminalNode(s)
 
 	default:
 		return t.VisitChildren(s)
 	}
 }
 
-func (p *ANTLRv4Parser) Terminal() (localctx ITerminalContext) {
-	localctx = NewTerminalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 118, ANTLRv4ParserRULE_terminal)
+func (p *ANTLRv4Parser) TerminalNode() (localctx ITerminalNodeContext) {
+	localctx = NewTerminalNodeContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 118, ANTLRv4ParserRULE_terminalNode)
 	var _la int
 
 	p.SetState(592)
