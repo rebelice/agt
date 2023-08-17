@@ -556,7 +556,7 @@ func (l *ANTLRv4Lexer) Action(localctx antlr.RuleContext, ruleIndex, actionIndex
 func (l *ANTLRv4Lexer) BEGIN_ARGUMENT_Action(localctx antlr.RuleContext, actionIndex int) {
 	switch actionIndex {
 	case 0:
-		this.handleBeginArgument()
+		l.handleBeginArgument()
 
 	default:
 		panic("No registered action for: " + fmt.Sprint(actionIndex))
@@ -565,7 +565,7 @@ func (l *ANTLRv4Lexer) BEGIN_ARGUMENT_Action(localctx antlr.RuleContext, actionI
 func (l *ANTLRv4Lexer) END_ARGUMENT_Action(localctx antlr.RuleContext, actionIndex int) {
 	switch actionIndex {
 	case 1:
-		this.handleEndArgument()
+		l.handleEndArgument()
 
 	default:
 		panic("No registered action for: " + fmt.Sprint(actionIndex))
@@ -574,7 +574,7 @@ func (l *ANTLRv4Lexer) END_ARGUMENT_Action(localctx antlr.RuleContext, actionInd
 func (l *ANTLRv4Lexer) END_ACTION_Action(localctx antlr.RuleContext, actionIndex int) {
 	switch actionIndex {
 	case 2:
-		this.handleEndAction()
+		l.handleEndAction()
 
 	default:
 		panic("No registered action for: " + fmt.Sprint(actionIndex))

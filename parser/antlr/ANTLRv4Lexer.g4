@@ -92,7 +92,7 @@ UNTERMINATED_STRING_LITERAL
 // are contained within square brackets.
 BEGIN_ARGUMENT
    : LBrack
-   { this.handleBeginArgument(); }
+   { l.handleBeginArgument(); }
    ;
 
 // -------------------------
@@ -316,7 +316,7 @@ ARGUMENT_CHAR_LITERAL
 
 END_ARGUMENT
    : RBrack
-   { this.handleEndArgument(); }
+   { l.handleEndArgument(); }
    ;
 
 // added this to return non-EOF token type here. EOF does something weird
@@ -373,7 +373,7 @@ ACTION_LINE_COMMENT
 
 END_ACTION
    : RBrace
-   { this.handleEndAction(); }
+   { l.handleEndAction(); }
    ;
 
 UNTERMINATED_ACTION
