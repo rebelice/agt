@@ -6,6 +6,10 @@ import (
 	"github.com/antlr4-go/antlr/v4"
 )
 
+var (
+	_ antlr.Lexer = (*LexerAdaptor)(nil)
+)
+
 const (
 	PREQUEL_CONSTRUCT = -10
 	OPTIONS_CONSTRUCT = -11
@@ -53,7 +57,7 @@ func (l *LexerAdaptor) Emit() antlr.Token {
 		l.currentRuleType = ANTLRv4LexerTOKEN_REF
 	} else if l.GetType() == ANTLRv4LexerAT && l.currentRuleType == antlr.TokenInvalidType {
 		l.currentRuleType = ANTLRv4LexerAT
-	} else if l.GetType() == ANTLRv4LexerRBRACE && l.currentRuleType == OPTIONS_CONSTRUCT {
+	} else if l.GetType() == ANTLRv4LexerSEMI && l.currentRuleType == OPTIONS_CONSTRUCT {
 		// ';' in options { .... }. Don't change anything.
 	} else if l.GetType() == ANTLRv4LexerEND_ACTION && l.currentRuleType == ANTLRv4LexerAT {
 		l.currentRuleType = antlr.TokenInvalidType
