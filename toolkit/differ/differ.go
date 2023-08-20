@@ -29,7 +29,7 @@ func (d *Differ) Run() error {
 	}
 
 	grammarRuleListener := &grammarRuleListener{
-		Target: d.Target,
+		target: d.Target,
 	}
 
 	antlr.ParseTreeWalkerDefault.Walk(grammarRuleListener, d.Tree)
@@ -103,11 +103,55 @@ func (d *Differ) parseGrammar() error {
 type grammarRuleListener struct {
 	*antlrparser.BaseANTLRv4ParserListener
 
-	Target string
+	target string
+
+	ruleName string
+	ruleMap  map[string]bool
 }
 
 func (g *grammarRuleListener) EnterParserRuleSpec(ctx *antlrparser.ParserRuleSpecContext) {
-	if ctx.RULE_REF().GetText() == g.Target {
-		fmt.Printf("Found target rule %s\n", g.Target)
+	if ctx.RULE_REF().GetText() == g.target {
+		g.ruleName = g.target
+		fmt.Printf("Found target rule %s\n", g.target)
+	}
+}
+
+func (g *grammarRuleListener) ExitParserRuleSpec(ctx *antlrparser.ParserRuleSpecContext) {
+	g.ruleName = ""
+}
+
+func (g *grammarRuleListener) EnterElement(ctx *antlrparser.ElementContext) {
+	if g.ruleName == "" {
+		return
+	}
+
+	// TODO: handle labeledElement
+	if ctx.LabeledElement() != nil {
+		return
+	}
+
+	// TODO: handle atom
+	if ctx.Atom() != nil {
+		return
+	}
+
+	// handle ebnf
+	if ctx.Ebnf() != nil {
+		return
+	}
+
+	// TODO: handle actionBlock
+	if ctx.ActionBlock() != nil {
+		return
+	}
+}
+
+func (g *grammarRuleListener) EnterAtom(ctx *antlrparser.AtomContext) {
+	if g.ruleName == "" {
+		return
+	}
+
+	if ctx.Ruleref() != nil {
+
 	}
 }
